@@ -6,7 +6,7 @@ import Topbar from './components/Topbar';
 import Loading from './components/Loading';
 
 import getContacts from './services/index';
-import { handleInputChange } from './utils/index';
+import { handleInputChange, SortArr } from './utils/index';
 
 import './App.scss';
 
@@ -19,14 +19,15 @@ class App extends React.Component {
       dataOrig: [],
       loading: true,
       searchBy: 'name',
-      orderBy: 1,
+      orderBy: 'down',
     };
   }
 
   async componentDidMount() {
     const data = await getContacts();
+    const { orderBy, searchBy } = this.state;
     this.setState({
-      data: data,
+      data: SortArr(data, orderBy, searchBy),
       dataOrig: data,
       loading: false,
     });
@@ -48,24 +49,10 @@ class App extends React.Component {
   };
 
   // onClick button
-  handleByOrder = (e) => {
-    e.preventDefault();
-
+  handleByOrder = (filter) => {
     this.setState({
-      searchBy: e.target.name,
-      orderBy: this.state.orderBy === 1 ? 0 : 1,
-    });
-  };
-
-  // onClick i
-  handleDirection = (e) => {
-    e.preventDefault();
-
-    console.log(this.state.searchBy);
-
-    this.setState({
-      searchBy: e.target.name,
-      orderBy: this.state.orderBy === 1 ? 0 : 1,
+      searchBy: filter,
+      orderBy: this.state.orderBy === 'up' ? 'down' : 'up',
     });
   };
 
@@ -77,10 +64,9 @@ class App extends React.Component {
         <Filters
           data={this.state.data}
           dataOrig={this.state.dataOrig}
-          handleChange={(value) => this.handleChange(value)}
-          handleByOrder={(value) => this.handleByOrder(value)}
+          handleChange={this.handleChange}
+          handleByOrder={this.handleByOrder}
           searchBy={this.state.searchBy}
-          handleDirection={(value) => this.handleDirection(value)}
           direction={this.state.orderBy}
         />
 

@@ -1,6 +1,5 @@
 function SortArr(contacts, order, sortBy) {
-  console.log(order);
-  if (order === 1) {
+  if (order === 'down') {
     return contacts.sort((a, b) =>
       a[sortBy] > b[sortBy] ? 1 : b[sortBy] > a[sortBy] ? -1 : 0
     );
@@ -24,4 +23,4 @@ function handleInputChange(data, inputChange, dataOrig, searchBy, order) {
   return SortArr(dataFilter, order, searchBy);
 }
 
-export { handleInputChange };
+export { handleInputChange, SortArr };

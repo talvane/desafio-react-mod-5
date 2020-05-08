@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
-    "dayjs": "^1.8.23"
+    "dayjs": "^1.8.23",
+    "eslint-plugin-react-hooks": "^4.0.0"
   }
 }

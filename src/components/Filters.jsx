@@ -12,6 +12,7 @@ class Filters extends React.Component {
               type="text"
               className="filters__search__input"
               placeholder="Pesquisar"
+              onChange={(event) => this.props.handleChange(event.target.value)}
             />
 
             <button className="filters__search__icon">

@@ -5,7 +5,7 @@ import './../styles/Contact.scss';
 class Contact extends React.Component {
   render() {
     return (
-      <article className="contact">
+      <article className="contact" data-testid="contact">
         <span className="contact__avatar">
           <img src={this.props.avatar} alt="avatar_contact" />
         </span>

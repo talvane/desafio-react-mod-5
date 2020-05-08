@@ -9,7 +9,7 @@ class Contacts extends React.Component {
     const data = this.props.data;
 
     return (
-      <div className="container">
+      <div className="container" data-testid="contacts">
         <section className="contacts">
           <article className="contact">
             <span className="contact__avatar" />

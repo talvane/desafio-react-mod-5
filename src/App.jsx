@@ -50,9 +50,12 @@ class App extends React.Component {
 
   // onClick button
   handleByOrder = (filter) => {
+    const ordBy = this.state.orderBy === 'up' ? 'down' : 'up';
+    const { data } = this.state;
     this.setState({
       searchBy: filter,
-      orderBy: this.state.orderBy === 'up' ? 'down' : 'up',
+      orderBy: ordBy,
+      data: SortArr(data, ordBy, filter),
     });
   };
 
